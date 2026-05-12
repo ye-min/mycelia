@@ -133,6 +133,7 @@
   line-height: 1.9;
   color: var(--fg);
   letter-spacing: 0.005em;
+  overflow-x: hidden;
 }
 
 /* ── Inner HTML rich text styles ── */
@@ -240,6 +241,9 @@
   padding: 0.55rem 1rem;
   border: 0.5px solid var(--border-2);
   text-align: left;
+}
+
+::ng-deep .body-content th {
   white-space: nowrap;
 }
 

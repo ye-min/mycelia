@@ -39,6 +39,9 @@ export class MarkdownRenderService {
     // 4. Restore Math
     html = html.replace(/:::MATH_BLOCK_(\d+):::/g, (match, idx) => mathBlocks[parseInt(idx)]);
 
+    // 5. Wrap tables in scrollable container
+    html = html.replace(/<table>/g, '<div class="table-scroll"><table>').replace(/<\/table>/g, '</table></div>');
+
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 }
