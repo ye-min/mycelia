@@ -1,5 +1,12 @@
 [
   {
+    "date": "2026-05-12",
+    "title": "部署指南：GitHub Pages + 自定义域名",
+    "excerpt": "一份详尽的部署指南，介绍如何使用 GitHub Actions 自动构建并部署 Angular 应用到 GitHub Pages，以及如何配置自定义域名和 HTTPS。",
+    "file": "assets/content/articles/deploy-gh-pages-guide.md",
+    "tags": ["GitHub Pages", "Deployment", "CI/CD"]
+  },
+  {
     "date": "2026-04-13",
     "title": "完整清除本地Windows账号",
     "excerpt": "Windows账号不仅包含用户数据, 还涉及系统设置, 权限和安全策略. 要彻底清除一个Windows账号, 需要执行以下步骤: ",
