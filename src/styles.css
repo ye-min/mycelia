@@ -18,7 +18,7 @@
 
   /* Accent Colors */
   --c-resume: #987338;
-  --c-write: #AE543A;
+  --c-article: #AE543A;
   --c-nav: #6B8F8A;
   --c-tools: #7866A0;
 
@@ -41,8 +41,8 @@
 
     /* Lighter, softer accents for dark backgrounds */
     --c-resume: #b58f50;
-    --c-write: #c56f57;
-    --c-ai: #67a2cb;
+    --c-article: #67a2cb;
+    --c-ai: #c56f57;
     --c-nav: #88b5b0;
     --c-tools: #9B8FC6;
   }
@@ -84,11 +84,11 @@ body {
 /* Apply entrance animation to all routed page components automatically */
 app-home,
 app-resume,
-app-writing,
+app-article,
 app-ai,
 app-about,
 app-resume-detail,
-app-writing-detail,
+app-article-detail,
 app-ai-detail,
 app-nav,
 app-tools,

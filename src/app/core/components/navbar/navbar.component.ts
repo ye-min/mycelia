@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private midnightTimer?: ReturnType<typeof setTimeout>;
 
   navLinks = [
-    { label: 'Writing', path: '/writing' },
+    { label: 'Article', path: '/article' },
     { label: 'Resume', path: '/resume' }
   ];
 

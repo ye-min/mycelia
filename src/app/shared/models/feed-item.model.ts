@@ -1,15 +1,15 @@
 /** 统一的 feed 列表显示项（由各类型索引派生） */
 export interface FeedDisplayItem {
   date: string;
-  type: 'resume' | 'writing';
+  type: 'resume' | 'article';
   title: string;
   link: string;
   excerpt?: string;                      // 文章简介（HTML）
   tags?: string[];                       // 文章标签
 }
 
-/** data/writing.json 中每条记录的结构 */
-export interface WritingIndex {
+/** data/articles.json 中每条记录的结构 */
+export interface ArticleIndex {
   date: string;
   title: string;
   excerpt?: string;

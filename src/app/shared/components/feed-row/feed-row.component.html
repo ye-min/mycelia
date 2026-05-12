@@ -5,8 +5,8 @@
       <span class="row-date">{{ item.date }}</span>
       <div class="row-type" (click)="navigateToType(item.type, $event)">
         <span class="type-icon" [ngSwitch]="item.type">
-          <!-- writing icon -->
-          <svg *ngSwitchCase="'writing'" width="10" height="10" viewBox="0 0 11 11" fill="none">
+          <!-- article icon -->
+          <svg *ngSwitchCase="'article'" width="10" height="10" viewBox="0 0 11 11" fill="none">
             <line x1="0" y1="2" x2="11" y2="2" stroke="var(--fg-3)" stroke-width="1" stroke-linecap="round" />
             <line x1="0" y1="5.5" x2="7.5" y2="5.5" stroke="var(--fg-3)" stroke-width="1" stroke-linecap="round" />
             <line x1="0" y1="9" x2="9" y2="9" stroke="var(--fg-3)" stroke-width="1" stroke-linecap="round" />
@@ -40,8 +40,8 @@
   <!-- Right: content varies by type -->
   <div class="row-right" [ngSwitch]="item.type">
 
-    <!-- writing: 简介 -->
-    <p *ngSwitchCase="'writing'" class="row-excerpt" [innerHTML]="item.excerpt"></p>
+    <!-- article: 简介 -->
+    <p *ngSwitchCase="'article'" class="row-excerpt" [innerHTML]="item.excerpt"></p>
 
     <!-- resume: 简介 -->
     <p *ngSwitchCase="'resume'" class="row-excerpt" [innerHTML]="item.excerpt"></p>

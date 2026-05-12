@@ -4,7 +4,7 @@ import { Observable, combineLatest } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import {
   FeedDisplayItem,
-  WritingIndex,
+  ArticleIndex,
   ResumeIndex
 } from '../../shared/models/feed-item.model';
 
@@ -16,8 +16,8 @@ export class FeedDataService {
     return this.http.get<ResumeIndex[]>('data/resume.json');
   }
 
-  getArticles(): Observable<WritingIndex[]> {
-    return this.http.get<WritingIndex[]>('data/writing.json');
+  getArticles(): Observable<ArticleIndex[]> {
+    return this.http.get<ArticleIndex[]>('data/articles.json');
   }
 
   /** 全部内容合并后按日期倒序，用于首页 feed */
@@ -38,9 +38,9 @@ export class FeedDataService {
           })),
           ...articles.map((a) => ({
             date: a.date,
-            type: 'writing' as const,
+            type: 'article' as const,
             title: a.title,
-            link: `/writing/${this.slugFromFile(a.file)}`,
+            link: `/article/${this.slugFromFile(a.file)}`,
             excerpt: a.excerpt,
             tags: a.tags,
           })),
@@ -65,14 +65,14 @@ export class FeedDataService {
     );
   }
 
-  getWritingFeedItems(): Observable<FeedDisplayItem[]> {
+  getArticleFeedItems(): Observable<FeedDisplayItem[]> {
     return this.getArticles().pipe(
       map((articles) =>
         articles.map((a) => ({
           date: a.date,
-          type: 'writing' as const,
+          type: 'article' as const,
           title: a.title,
-          link: `/writing/${this.slugFromFile(a.file)}`,
+          link: `/article/${this.slugFromFile(a.file)}`,
           excerpt: a.excerpt,
           tags: a.tags,
         }))
@@ -81,7 +81,7 @@ export class FeedDataService {
   }
 
   /** 根据 slug 加载文章元数据 + Markdown 内容 */
-  getArticleBySlug(slug: string): Observable<{ meta: WritingIndex; content: string }> {
+  getArticleBySlug(slug: string): Observable<{ meta: ArticleIndex; content: string }> {
     return this.getArticles().pipe(
       switchMap((articles) => {
         const meta = articles.find((a) => this.slugFromFile(a.file) === slug);

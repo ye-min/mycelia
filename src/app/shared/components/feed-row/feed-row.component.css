@@ -145,28 +145,28 @@
 
 /* ══════════════════════════════════════
    Type-based accent colors
-   Writing: var(--c-write)
+   Article: var(--c-article)
    Resume:   var(--c-resume)
    ══════════════════════════════════════ */
 
-/* ── Writing accent ── */
-.row.writing .type-icon svg line {
-  stroke: var(--c-write);
+/* ── Article accent ── */
+.row.article .type-icon svg line {
+  stroke: var(--c-article);
 }
 
-.row.writing .type-label {
-  color: var(--c-write);
+.row.article .type-label {
+  color: var(--c-article);
 }
 
 /* Title hover — independent per type */
-.row.writing .row-title:hover {
-  color: var(--c-write);
+.row.article .row-title:hover {
+  color: var(--c-article);
 }
 
-/* Tag active — writing accent */
-.row.writing .tag.active {
-  color: var(--c-write);
-  border-color: var(--c-write);
+/* Tag active — article accent */
+.row.article .tag.active {
+  color: var(--c-article);
+  border-color: var(--c-article);
   background-color: transparent;
 }
 

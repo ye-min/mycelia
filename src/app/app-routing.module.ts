@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { WritingComponent } from './pages/writing/writing.component';
+import { ArticleComponent } from './pages/article/article.component';
 import { AboutComponent } from './pages/about/about.component';
-import { WritingDetailComponent } from './pages/writing-detail/writing-detail.component';
+import { ArticleDetailComponent } from './pages/article-detail/article-detail.component';
 import { NavComponent } from './pages/nav/nav.component';
 import { ToolsComponent } from './pages/tools/tools.component';
 import { PdfConverterComponent } from './pages/pdf-converter/pdf-converter.component';
@@ -19,8 +19,8 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'resume', component: ResumeComponent },
   { path: 'resume/:id', component: ResumeDetailComponent },
-  { path: 'writing', component: WritingComponent },
-  { path: 'writing/:id', component: WritingDetailComponent },
+  { path: 'article', component: ArticleComponent },
+  { path: 'article/:id', component: ArticleDetailComponent },
   { path: 'about', component: AboutComponent },
   { path: 'nav', component: NavComponent },
   { path: 'tools', component: ToolsComponent },

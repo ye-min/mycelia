@@ -23,7 +23,7 @@
   display: inline-block;
   width: 24px;
   height: 2px;
-  background: var(--c-write);
+  background: var(--c-article);
   border-radius: 1px;
   flex-shrink: 0;
 }
@@ -33,7 +33,7 @@
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--c-write);
+  color: var(--c-article);
 }
 
 .meta-dot {
@@ -121,7 +121,7 @@
 
 ::ng-deep .body-content blockquote {
   position: relative;
-  border-left: 2px solid var(--c-write);
+  border-left: 2px solid var(--c-article);
   padding: 0.2rem 0 0.2rem 1.8rem;
   margin: 3rem 0;
   font-family: var(--serif);
@@ -138,20 +138,20 @@
   top: -0.8rem;
   font-family: var(--serif);
   font-size: 4rem;
-  color: var(--c-write);
+  color: var(--c-article);
   opacity: 0.15;
   line-height: 1;
 }
 
 ::ng-deep .body-content a {
-  color: var(--c-write);
+  color: var(--c-article);
   text-decoration: none;
   border-bottom: 1px solid rgba(152, 115, 56, 0.3);
   transition: border-color 0.2s ease;
 }
 
 ::ng-deep .body-content a:hover {
-  border-bottom-color: var(--c-write);
+  border-bottom-color: var(--c-article);
 }
 
 ::ng-deep .body-content code {

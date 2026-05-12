@@ -24,7 +24,7 @@
   display: block;
   width: 32px;
   height: 2px;
-  background: var(--c-write);
+  background: var(--c-article);
   margin-top: 1.2rem;
   border-radius: 1px;
 }
@@ -58,8 +58,8 @@
 }
 
 .filter-tag.active {
-  color: var(--c-write);
-  border-color: var(--c-write);
+  color: var(--c-article);
+  border-color: var(--c-article);
   background: transparent;
 }
 

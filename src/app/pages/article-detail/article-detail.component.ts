@@ -5,20 +5,20 @@ import { Observable, of } from 'rxjs';
 import { switchMap, map, catchError, startWith } from 'rxjs/operators';
 import { FeedDataService } from '../../core/services/feed-data.service';
 import { MarkdownRenderService } from '../../core/services/markdown-render.service';
-import { WritingIndex } from '../../shared/models/feed-item.model';
+import { ArticleIndex } from '../../shared/models/feed-item.model';
 import { LoadingState } from '../../shared/models/loading-state.model';
 
 interface ArticleViewModel {
-  meta: WritingIndex;
+  meta: ArticleIndex;
   html: SafeHtml;
 }
 
 @Component({
-  selector: 'app-writing-detail',
-  templateUrl: './writing-detail.component.html',
-  styleUrls: ['./writing-detail.component.css']
+  selector: 'app-article-detail',
+  templateUrl: './article-detail.component.html',
+  styleUrls: ['./article-detail.component.css']
 })
-export class WritingDetailComponent implements OnInit {
+export class ArticleDetailComponent implements OnInit {
   state$: Observable<LoadingState<ArticleViewModel>>;
 
   constructor(
@@ -45,6 +45,6 @@ export class WritingDetailComponent implements OnInit {
   ngOnInit(): void {}
 
   navigateToTag(tag: string): void {
-    this.router.navigate(['/writing'], { queryParams: { tags: tag } });
+    this.router.navigate(['/article'], { queryParams: { tags: tag } });
   }
 }

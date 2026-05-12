@@ -6,11 +6,11 @@ import { FeedDisplayItem } from '../../shared/models/feed-item.model';
 import { FeedDataService } from '../../core/services/feed-data.service';
 
 @Component({
-  selector: 'app-writing',
-  templateUrl: './writing.component.html',
-  styleUrls: ['./writing.component.css']
+  selector: 'app-article',
+  templateUrl: './article.component.html',
+  styleUrls: ['./article.component.css']
 })
-export class WritingComponent implements OnInit {
+export class ArticleComponent implements OnInit {
   private allItems$: Observable<FeedDisplayItem[]>;
 
   selectedTags$ = new BehaviorSubject<Set<string>>(new Set());
@@ -18,7 +18,7 @@ export class WritingComponent implements OnInit {
   feedItems$: Observable<FeedDisplayItem[]>;
 
   constructor(private feedData: FeedDataService, private route: ActivatedRoute, private router: Router) {
-    this.allItems$ = this.feedData.getWritingFeedItems();
+    this.allItems$ = this.feedData.getArticleFeedItems();
 
     this.allTags$ = this.allItems$.pipe(
       map(items => {

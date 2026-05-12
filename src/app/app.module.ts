@@ -9,10 +9,10 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
 import { HomeComponent } from './pages/home/home.component';
-import { WritingComponent } from './pages/writing/writing.component';
+import { ArticleComponent } from './pages/article/article.component';
 import { ResumeComponent } from './pages/resume/resume.component';
 import { AboutComponent } from './pages/about/about.component';
-import { WritingDetailComponent } from './pages/writing-detail/writing-detail.component';
+import { ArticleDetailComponent } from './pages/article-detail/article-detail.component';
 import { ResumeDetailComponent } from './pages/resume-detail/resume-detail.component';
 import { NavComponent } from './pages/nav/nav.component';
 import { ToolsComponent } from './pages/tools/tools.component';
@@ -27,10 +27,10 @@ import { MdToPdfComponent } from './pages/md-to-pdf/md-to-pdf.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    WritingComponent,
+    ArticleComponent,
     ResumeComponent,
     AboutComponent,
-    WritingDetailComponent,
+    ArticleDetailComponent,
     ResumeDetailComponent,
     NavComponent,
     ToolsComponent,
