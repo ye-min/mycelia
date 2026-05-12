@@ -1,0 +1,59 @@
+<main id="pdf-converter-page">
+  <div class="container">
+    <header class="page-header">
+      <a routerLink="/tools" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Tools
+      </a>
+      <h1 class="page-title">PDF → Markdown</h1>
+      <p class="page-desc">上传文字型 PDF，提取内容转换为 Markdown 格式</p>
+    </header>
+
+    <!-- Upload Area -->
+    <section *ngIf="!markdownOutput && !isProcessing" class="upload-section">
+      <div
+        class="drop-zone"
+        [class.dragging]="isDragging"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave()"
+        (drop)="onDrop($event)"
+        (click)="fileInput.click()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="drop-icon">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="12" y1="12" x2="12" y2="18"/>
+          <polyline points="9 15 12 12 15 15"/>
+        </svg>
+        <p class="drop-label">拖拽 PDF 到此处，或<span class="drop-link">点击上传</span></p>
+        <p class="drop-hint">仅支持文字型 PDF（非扫描版）</p>
+        <input #fileInput type="file" accept="application/pdf" (change)="onFileSelect($event)" style="display:none">
+      </div>
+      <p *ngIf="errorMsg" class="error-msg">{{ errorMsg }}</p>
+    </section>
+
+    <!-- Processing State -->
+    <section *ngIf="isProcessing" class="processing-section">
+      <div class="processing-inner">
+        <div class="spinner"></div>
+        <p class="processing-label">正在解析 <span class="file-name">{{ fileName }}</span></p>
+      </div>
+    </section>
+
+    <!-- Output Area -->
+    <section *ngIf="markdownOutput" class="output-section">
+      <div class="output-header">
+        <span class="output-file">{{ fileName }}</span>
+        <div class="output-actions">
+          <button class="btn btn-ghost" (click)="reset()">重新上传</button>
+          <button class="btn btn-ghost" (click)="copyToClipboard()">
+            {{ copied ? '已复制' : '复制' }}
+          </button>
+          <button class="btn btn-primary" (click)="downloadMarkdown()">下载 .md</button>
+        </div>
+      </div>
+      <pre class="output-content"><code>{{ markdownOutput }}</code></pre>
+    </section>
+  </div>
+</main>

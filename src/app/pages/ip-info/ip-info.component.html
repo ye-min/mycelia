@@ -1,0 +1,83 @@
+<main id="ip-info-page">
+  <div class="container">
+
+    <header class="page-header">
+      <a routerLink="/tools" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Tools
+      </a>
+      <h1 class="page-title">IP 查询</h1>
+      <p class="page-desc">查看当前访问的 IP 地址与归属地信息</p>
+    </header>
+
+    <!-- Loading -->
+    <div *ngIf="state === 'loading'" class="state-center">
+      <div class="spinner"></div>
+      <p class="state-label">正在检测…</p>
+    </div>
+
+    <!-- Error -->
+    <div *ngIf="state === 'error'" class="state-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="state-icon-err">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="12"/>
+        <line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <p class="state-label err">{{ errorMsg }}</p>
+      <button class="btn btn-ghost" (click)="load()">重试</button>
+    </div>
+
+    <!-- Result -->
+    <div *ngIf="state === 'done'" class="result">
+
+      <!-- IP hero -->
+      <div class="ip-hero">
+        <span class="ip-label">Your IP</span>
+        <div class="ip-row">
+          <span class="ip-value">{{ ip }}</span>
+          <button class="copy-btn" (click)="copyIp()" [class.copied]="copied" title="复制 IP">
+            <svg *ngIf="!copied" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <svg *ngIf="copied" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Info grid -->
+      <dl class="info-grid">
+        <div *ngFor="let row of rows" class="info-row">
+          <dt class="info-label">{{ row.label }}</dt>
+          <dd class="info-value">{{ row.value }}</dd>
+        </div>
+      </dl>
+
+      <!-- Actions -->
+      <div class="action-row">
+        <button *ngIf="hasCoords" class="btn btn-ghost" (click)="openMap()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          在地图上查看
+        </button>
+        <button class="btn btn-ghost" (click)="load()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/>
+            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+          </svg>
+          刷新
+        </button>
+      </div>
+
+      <p class="disclaimer">定位精度取决于 ISP 数据，通常精确到城市级别</p>
+    </div>
+
+  </div>
+</main>

@@ -1,0 +1,118 @@
+.page-header {
+  padding: 3rem 0 2rem;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.page-title {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--fg);
+}
+
+.page-desc {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-3);
+  letter-spacing: 0.08em;
+  margin-top: 0.5rem;
+}
+
+.world-clocks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  margin-top: 0.7rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-3);
+  letter-spacing: 0.08em;
+}
+
+.clock-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+
+.clock-label {
+  color: var(--fg-3);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.clock-time {
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+}
+
+.page-header::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--c-nav);
+  margin-top: 1.2rem;
+  border-radius: 1px;
+}
+
+/* ── Category ── */
+.category-section {
+  padding: 2.4rem 0;
+}
+
+.category-title {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin-bottom: 1.2rem;
+}
+
+/* ── Grid ── */
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.75rem;
+}
+
+/* ── Card ── */
+.link-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1rem 1.1rem;
+  border: 0.5px solid var(--border);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.link-card:hover {
+  border-color: var(--c-nav);
+  background: rgba(107, 143, 138, 0.05);
+}
+
+.link-title {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--fg);
+  font-weight: 500;
+}
+
+.link-desc {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--fg-3);
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 640px) {
+  .link-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+}

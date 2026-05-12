@@ -1,0 +1,144 @@
+<main id="timestamp-page">
+  <div class="container">
+
+    <header class="page-header">
+      <a routerLink="/tools" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Tools
+      </a>
+      <h1 class="page-title">时间戳转换</h1>
+      <p class="page-desc">Unix 时间戳与可读时间互转</p>
+    </header>
+
+    <!-- ── Live clock ── -->
+    <section class="live-section">
+      <div class="live-time">{{ localStr }}</div>
+      <div class="live-stamps">
+        <div class="stamp-item">
+          <span class="stamp-label">秒级时间戳</span>
+          <div class="stamp-row">
+            <span class="stamp-val">{{ seconds }}</span>
+            <button class="icon-btn" (click)="copyLive(seconds, 'sec')" title="复制">
+              <svg *ngIf="liveCopied !== 'sec'" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <svg *ngIf="liveCopied === 'sec'" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="stamp-divider"></div>
+        <div class="stamp-item">
+          <span class="stamp-label">毫秒级时间戳</span>
+          <div class="stamp-row">
+            <span class="stamp-val">{{ millis }}</span>
+            <button class="icon-btn" (click)="copyLive(millis, 'ms')" title="复制">
+              <svg *ngIf="liveCopied !== 'ms'" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <svg *ngIf="liveCopied === 'ms'" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Converters ── -->
+    <section class="converters">
+
+      <!-- Timestamp → DateTime -->
+      <div class="converter-card">
+        <h2 class="card-title">时间戳 → 时间</h2>
+        <p class="card-hint">10 位自动识别为秒级，13 位为毫秒级</p>
+        <div class="input-row">
+          <input
+            class="text-input"
+            type="text"
+            inputmode="numeric"
+            placeholder="输入时间戳，如 1704067200"
+            [(ngModel)]="tsInput"
+            (keydown.enter)="convertTs()">
+          <button class="btn btn-ghost use-now" (click)="useNowForTs()" title="使用当前时间戳">现在</button>
+          <button class="btn btn-primary" (click)="convertTs()">转换</button>
+        </div>
+        <p *ngIf="tsError" class="error-msg">{{ tsError }}</p>
+        <dl *ngIf="tsResult" class="result-grid">
+          <div class="result-row">
+            <dt>本地时间</dt>
+            <dd>
+              <span>{{ tsResult.local }}</span>
+              <button class="icon-btn" (click)="copyTs('local')">
+                <svg *ngIf="tsCopied !== 'local'" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg *ngIf="tsCopied === 'local'" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </button>
+            </dd>
+          </div>
+          <div class="result-row">
+            <dt>UTC 时间</dt>
+            <dd>
+              <span>{{ tsResult.utc }}</span>
+              <button class="icon-btn" (click)="copyTs('utc')">
+                <svg *ngIf="tsCopied !== 'utc'" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg *ngIf="tsCopied === 'utc'" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </button>
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- DateTime → Timestamp -->
+      <div class="converter-card">
+        <h2 class="card-title">时间 → 时间戳</h2>
+        <p class="card-hint">选择或输入日期时间，自动转换为两种时间戳</p>
+        <div class="input-row">
+          <input
+            class="text-input"
+            type="datetime-local"
+            step="1"
+            [(ngModel)]="dtInput"
+            (change)="convertDt()">
+          <button class="btn btn-primary" (click)="convertDt()">转换</button>
+        </div>
+        <p *ngIf="dtError" class="error-msg">{{ dtError }}</p>
+        <dl *ngIf="dtResult" class="result-grid">
+          <div class="result-row">
+            <dt>秒级时间戳</dt>
+            <dd>
+              <span>{{ dtResult.seconds }}</span>
+              <button class="icon-btn" (click)="copyDt('seconds')">
+                <svg *ngIf="dtCopied !== 'seconds'" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg *ngIf="dtCopied === 'seconds'" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </button>
+            </dd>
+          </div>
+          <div class="result-row">
+            <dt>毫秒级时间戳</dt>
+            <dd>
+              <span>{{ dtResult.millis }}</span>
+              <button class="icon-btn" (click)="copyDt('millis')">
+                <svg *ngIf="dtCopied !== 'millis'" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg *ngIf="dtCopied === 'millis'" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </button>
+            </dd>
+          </div>
+          <div class="result-row">
+            <dt>UTC 时间</dt>
+            <dd>
+              <span>{{ dtResult.utc }}</span>
+              <button class="icon-btn" (click)="copyDt('utc')">
+                <svg *ngIf="dtCopied !== 'utc'" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg *ngIf="dtCopied === 'utc'" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </button>
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+    </section>
+  </div>
+</main>

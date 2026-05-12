@@ -1,0 +1,119 @@
+<main id="pdf-merger-page">
+  <div class="container">
+
+    <header class="page-header">
+      <a routerLink="/tools" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Tools
+      </a>
+      <h1 class="page-title">PDF 合并</h1>
+      <p class="page-desc">上传多个 PDF，拖拽调整顺序后合并为一个文件</p>
+    </header>
+
+    <!-- Drop Zone -->
+    <section class="upload-section">
+      <div
+        class="drop-zone"
+        [class.dragging]="isDraggingOver"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave()"
+        (drop)="onDrop($event)"
+        (click)="fileInput.click()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="drop-icon">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="12" y1="12" x2="12" y2="18"/>
+          <polyline points="9 15 12 12 15 15"/>
+        </svg>
+        <p class="drop-label">拖拽 PDF 到此处，或<span class="drop-link">点击上传</span></p>
+        <p class="drop-hint">可多选，支持重复添加</p>
+        <input #fileInput type="file" accept="application/pdf" multiple (change)="onFileSelect($event)" style="display:none">
+      </div>
+    </section>
+
+    <!-- File List -->
+    <section *ngIf="entries.length > 0" class="list-section">
+      <div class="list-header">
+        <span class="list-meta">{{ entries.length }} 个文件 · 共 {{ totalPages }} 页</span>
+        <span class="list-hint">拖拽行可调整顺序</span>
+      </div>
+
+      <ul class="file-list">
+        <li
+          *ngFor="let entry of entries; let i = index"
+          class="file-item"
+          [class.dragging]="dragSrcId === entry.id"
+          draggable="true"
+          (dragstart)="onItemDragStart($event, entry.id)"
+          (dragover)="onItemDragOver($event, entry.id)"
+          (dragend)="onItemDragEnd()">
+
+          <!-- Drag handle -->
+          <span class="drag-handle" title="拖拽排序">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="8" y1="6" x2="21" y2="6"/>
+              <line x1="8" y1="12" x2="21" y2="12"/>
+              <line x1="8" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6" x2="3.01" y2="6"/>
+              <line x1="3" y1="12" x2="3.01" y2="12"/>
+              <line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+          </span>
+
+          <!-- Index badge -->
+          <span class="file-index">{{ i + 1 }}</span>
+
+          <!-- File info -->
+          <span class="file-name" [title]="entry.file.name">{{ entry.file.name }}</span>
+
+          <span class="file-pages" *ngIf="entry.pageCount !== null">
+            <ng-container *ngIf="entry.pageCount >= 0">{{ entry.pageCount }} 页</ng-container>
+            <ng-container *ngIf="entry.pageCount < 0">解析失败</ng-container>
+          </span>
+          <span class="file-pages loading" *ngIf="entry.pageCount === null">…</span>
+
+          <!-- Move buttons (keyboard/mobile fallback) -->
+          <div class="move-btns">
+            <button class="move-btn" (click)="moveUp(i)" [disabled]="i === 0" title="上移">
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"/>
+              </svg>
+            </button>
+            <button class="move-btn" (click)="moveDown(i)" [disabled]="i === entries.length - 1" title="下移">
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Remove -->
+          <button class="remove-btn" (click)="remove(entry.id)" title="移除">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </li>
+      </ul>
+
+      <!-- Actions -->
+      <div class="action-row">
+        <p *ngIf="errorMsg" class="error-msg">{{ errorMsg }}</p>
+        <div class="action-btns">
+          <button class="btn btn-ghost" (click)="fileInput2.click()">继续添加</button>
+          <input #fileInput2 type="file" accept="application/pdf" multiple (change)="onFileSelect($event)" style="display:none">
+          <button
+            class="btn btn-primary"
+            [disabled]="entries.length < 2 || isMerging"
+            (click)="merge()">
+            <ng-container *ngIf="!isMerging">合并并下载</ng-container>
+            <ng-container *ngIf="isMerging">合并中…</ng-container>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>

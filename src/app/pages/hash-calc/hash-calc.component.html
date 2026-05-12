@@ -1,0 +1,63 @@
+<main id="hash-calc-page">
+  <div class="container">
+
+    <header class="page-header">
+      <a routerLink="/tools" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Tools
+      </a>
+      <h1 class="page-title">哈希计算</h1>
+      <p class="page-desc">计算文本的 MD5 / SHA / SHA-3 / RIPEMD 哈希值，纯本地运算</p>
+    </header>
+
+    <!-- Input -->
+    <section class="input-section">
+      <textarea
+        class="text-area"
+        placeholder="在此输入需要计算哈希的文本…"
+        [(ngModel)]="input"
+        rows="5"
+        (keydown.meta.enter)="compute()"
+        (keydown.control.enter)="compute()"></textarea>
+      <div class="input-actions">
+        <span class="char-count">{{ input.length }} 字符</span>
+        <div class="btns">
+          <button class="btn btn-ghost" (click)="clear()" [disabled]="!input">清空</button>
+          <button class="btn btn-primary" (click)="compute()" [disabled]="!input">计算</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section *ngIf="results.length > 0" class="results-section">
+      <div class="results-header">
+        <span class="results-count">{{ results.length }} 种算法</span>
+        <button class="btn btn-ghost btn-sm" (click)="copyAll()">复制全部</button>
+      </div>
+
+      <dl class="results-list">
+        <div *ngFor="let r of results" class="result-row">
+          <dt>
+            <span class="algo-name">{{ r.name }}</span>
+            <span class="algo-bits">{{ r.bits }}-bit</span>
+          </dt>
+          <dd>
+            <span class="hash-val">{{ r.value }}</span>
+            <button class="icon-btn" (click)="copy(r)" [title]="r.copied ? '已复制' : '复制'">
+              <svg *ngIf="!r.copied" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <svg *ngIf="r.copied" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </button>
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+  </div>
+</main>

@@ -1,0 +1,42 @@
+<ng-container *ngIf="state$ | async as state">
+  <!-- Success -->
+  <main class="detail-page" *ngIf="state.data as resume">
+    <!-- Hero header -->
+    <header class="detail-header container">
+      <div class="header-meta">
+        <span class="accent-bar"></span>
+        <span class="type-badge">Resume</span>
+        <span class="meta-dot">·</span>
+        <time class="meta-date">{{ resume.meta.date }}</time>
+        <span class="meta-dot" *ngIf="resume.meta.link">·</span>
+        <a *ngIf="resume.meta.link" [href]="resume.meta.link" class="download-link" download>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download PDF
+        </a>
+      </div>
+      <h1 class="detail-title">{{ resume.meta.title }}</h1>
+      <div *ngIf="resume.meta.tags && resume.meta.tags.length" class="detail-tags">
+        <span *ngFor="let tag of resume.meta.tags" class="detail-tag" (click)="navigateToTag(tag)">{{ tag }}</span>
+      </div>
+      <div class="header-rule"></div>
+    </header>
+
+    <!-- Resume body -->
+    <article class="detail-body container">
+      <div class="body-content" [innerHTML]="resume.html"></div>
+    </article>
+  </main>
+
+  <!-- Error / 404 -->
+  <div *ngIf="!state.loading && state.data === null" class="not-found container">
+    <span class="not-found-code">404</span>
+    <p class="not-found-text">Resume not found.</p>
+  </div>
+
+  <!-- Loading (Optional: Blank or Spinner) -->
+  <div *ngIf="state.loading" class="loading-placeholder"></div>
+</ng-container>

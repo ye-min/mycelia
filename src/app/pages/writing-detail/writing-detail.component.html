@@ -1,0 +1,33 @@
+<ng-container *ngIf="state$ | async as state">
+  <!-- Success -->
+  <main class="detail-page" *ngIf="state.data as article">
+    <!-- Hero header -->
+    <header class="detail-header container">
+      <div class="header-meta">
+        <span class="accent-bar"></span>
+        <span class="type-badge">Writing</span>
+        <span class="meta-dot">·</span>
+        <time class="meta-date">{{ article.meta.date }}</time>
+      </div>
+      <h1 class="detail-title">{{ article.meta.title }}</h1>
+      <div *ngIf="article.meta.tags && article.meta.tags.length" class="detail-tags">
+        <span *ngFor="let tag of article.meta.tags" class="detail-tag" (click)="navigateToTag(tag)">{{ tag }}</span>
+      </div>
+      <div class="header-rule"></div>
+    </header>
+
+    <!-- Article body -->
+    <article class="detail-body container">
+      <div class="body-content" [innerHTML]="article.html"></div>
+    </article>
+  </main>
+
+  <!-- Error / 404 -->
+  <div *ngIf="!state.loading && state.data === null" class="not-found container">
+    <span class="not-found-code">404</span>
+    <p class="not-found-text">Article not found.</p>
+  </div>
+
+  <!-- Loading (Optional: Blank or Spinner) -->
+  <div *ngIf="state.loading" class="loading-placeholder"></div>
+</ng-container>

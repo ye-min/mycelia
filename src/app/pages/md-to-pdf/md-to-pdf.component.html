@@ -1,0 +1,61 @@
+<main id="md-to-pdf-page">
+  <div class="container">
+    <header class="page-header">
+      <a routerLink="/tools" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Tools
+      </a>
+      <h1 class="page-title">Markdown → PDF</h1>
+      <p class="page-desc">粘贴或上传 Markdown，预览后导出为 PDF</p>
+    </header>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="tab-group">
+        <button class="tab-btn" [class.active]="activeTab === 'edit'" (click)="activeTab = 'edit'">编辑</button>
+        <button class="tab-btn" [class.active]="activeTab === 'preview'" (click)="activeTab = 'preview'">预览</button>
+      </div>
+      <div class="toolbar-right">
+        <label class="btn btn-ghost upload-label">
+          上传 .md
+          <input type="file" accept=".md,.markdown,.txt" (change)="onFileSelect($event)" style="display:none">
+        </label>
+        <button class="btn btn-ghost" (click)="clear()" [disabled]="!markdownInput">清空</button>
+        <button class="btn btn-primary" (click)="exportPdf()" [disabled]="!markdownInput.trim()">导出 PDF</button>
+      </div>
+    </div>
+
+    <p *ngIf="errorMsg" class="error-msg">{{ errorMsg }}</p>
+
+    <!-- Edit Tab -->
+    <div class="editor-wrap" *ngIf="activeTab === 'edit'">
+      <div
+        class="drop-overlay"
+        [class.active]="isDragging"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave()"
+        (drop)="onDrop($event)">
+        <span class="drop-label">松开以加载文件</span>
+      </div>
+      <textarea
+        class="editor"
+        [(ngModel)]="markdownInput"
+        placeholder="在此粘贴 Markdown 内容，或将 .md 文件拖拽到此区域..."
+        spellcheck="false"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave()"
+        (drop)="onDrop($event)">
+      </textarea>
+    </div>
+
+    <!-- Preview Tab -->
+    <div class="preview-wrap" *ngIf="activeTab === 'preview'">
+      <div *ngIf="!renderedHtml" class="preview-empty">
+        <span>暂无内容，请切换到编辑页输入 Markdown</span>
+      </div>
+      <div *ngIf="renderedHtml" #previewEl class="preview-content markdown-body" [innerHTML]="renderedHtml"></div>
+    </div>
+  </div>
+</main>

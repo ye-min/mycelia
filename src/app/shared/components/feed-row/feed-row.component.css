@@ -1,0 +1,192 @@
+/* ── Row ── */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1px 1.618fr;
+  /* golden ratio ≈ 38.2% : 61.8% */
+  border-bottom: 0.5px solid var(--border);
+  padding: 1.7rem 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ── Left ── */
+.row-left {
+  padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 64px;
+}
+
+.row-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.26rem;
+}
+
+.row-date {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--fg-3);
+  letter-spacing: 0.04em;
+}
+
+.row-type {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+/* Type area hover — subtle dim since it's not clickable */
+.row-type:hover .type-label,
+.row-type:hover .type-icon {
+  opacity: 0.55;
+}
+
+.type-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition: opacity 0.15s;
+}
+
+.type-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--fg-3);
+  letter-spacing: 0.1em;
+  line-height: 1;
+  transition: opacity 0.15s;
+}
+
+.row-title {
+  font-family: var(--serif);
+  font-size: 16.5px;
+  font-weight: 300;
+  line-height: 1.42;
+  letter-spacing: 0.012em;
+  color: var(--fg);
+  margin-top: 0.8rem;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+/* ── Divider ── */
+.row-divider {
+  width: 0.5px;
+  background: var(--border-2);
+  align-self: stretch;
+}
+
+/* ── Right ── */
+.row-right {
+  padding-left: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Excerpt (writing) ── */
+.row-excerpt {
+  font-size: 12.5px;
+  line-height: 1.82;
+  color: var(--fg-3);
+}
+
+:host ::ng-deep .row-excerpt em {
+  font-style: normal;
+  color: var(--fg-2);
+}
+
+/* ── Tag pills ── */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 0.5rem;
+}
+
+.tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--fg-3);
+  border: 0.5px solid var(--border-2);
+  border-radius: 2px;
+  padding: 1px 6px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.tag:hover {
+  color: var(--fg-2);
+  border-color: var(--fg-3);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .row-divider {
+    display: none;
+  }
+
+  .row-right {
+    padding-left: 0;
+  }
+
+  .row-left {
+    min-height: unset;
+  }
+}
+
+/* ══════════════════════════════════════
+   Type-based accent colors
+   Writing: var(--c-write)
+   Resume:   var(--c-resume)
+   ══════════════════════════════════════ */
+
+/* ── Writing accent ── */
+.row.writing .type-icon svg line {
+  stroke: var(--c-write);
+}
+
+.row.writing .type-label {
+  color: var(--c-write);
+}
+
+/* Title hover — independent per type */
+.row.writing .row-title:hover {
+  color: var(--c-write);
+}
+
+/* Tag active — writing accent */
+.row.writing .tag.active {
+  color: var(--c-write);
+  border-color: var(--c-write);
+  background-color: transparent;
+}
+
+/* ── Resume accent ── */
+.row.resume .type-icon svg line {
+  stroke: var(--c-resume);
+}
+
+.row.resume .type-label {
+  color: var(--c-resume);
+}
+
+/* Title hover — independent per type */
+.row.resume .row-title:hover {
+  color: var(--c-resume);
+}
+
+/* Tag active — resume accent */
+.row.resume .tag.active {
+  color: var(--c-resume);
+  border-color: var(--c-resume);
+  background-color: transparent;
+}

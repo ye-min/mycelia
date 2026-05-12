@@ -1,0 +1,106 @@
+nav {
+  border-bottom: 0.5px solid var(--border-2);
+  padding: 2.4rem 0;
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--fg);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.logo:hover {
+  opacity: 0.6;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--fg);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.icon-group {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.nav-icon,
+.tools-icon,
+.about-icon {
+  display: flex;
+  align-items: center;
+  color: var(--fg-2);
+  transition: color 0.15s;
+}
+
+.nav-icon:hover,
+.nav-icon.active {
+  color: var(--c-nav);
+}
+
+.tools-icon:hover,
+.tools-icon.active {
+  color: var(--c-tools);
+}
+
+.about-icon:hover,
+.about-icon.active {
+  color: var(--fg);
+}
+
+@media (max-width: 640px) {
+  .nav-links {
+    gap: 1.2rem;
+  }
+  
+  .nav-right {
+    gap: 1.5rem;
+  }
+
+  .icon-group {
+    gap: 1rem;
+  }
+}

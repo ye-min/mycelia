@@ -1,0 +1,201 @@
+<main id="about-page">
+  <div class="container">
+    <header class="page-header">
+      <h1 class="page-title">About</h1>
+    </header>
+
+    <section class="about-content">
+      <div class="terminal-grid">
+        <div class="terminal-section">
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="terminal-header-title">~/workspace/mycelia</span>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-line">
+                <span class="prompt">~ %</span><span class="command">mycelia</span> --version
+              </div>
+              <div class="terminal-line">
+                Mycelia Evolution v{{ version }}
+              </div>
+              <div class="terminal-line">
+                Build: {{ buildTime }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="terminal-section">
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="terminal-header-title">~/workspace/git</span>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-line">
+                <span class="prompt">~ %</span><span class="command">git config</span> user.name "Ye Min"
+              </div>
+              <div class="terminal-line">
+                <span class="prompt">~ %</span><span class="command">git config</span> user.email
+                "builder.yemin@gmail.com"
+              </div>
+              <div class="terminal-line">
+                <span class="prompt">~ %</span>GitHub is the closest world to communism.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="terminal-section">
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="terminal-header-title">~/workspace/maven</span>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-line">
+                <span class="prompt">~ %</span><span class="command">mvn</span> archetype:generate \
+              </div>
+              <div class="terminal-line indent">
+                -DgroupId=com.example \
+              </div>
+              <div class="terminal-line indent">
+                -DartifactId=my-project \
+              </div>
+              <div class="terminal-line indent">
+                -DarchetypeArtifactId=maven-archetype-quickstart \
+              </div>
+              <div class="terminal-line indent">
+                -DinteractiveMode=false
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="terminal-section">
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="terminal-header-title">~/workspace/database</span>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-line">
+                <span class="prompt">~ %</span><span class="command">pgcli</span> -h localhost -p 5432 -U developer
+                postgres
+              </div>
+              <div class="terminal-line">
+                <span class="prompt">~ %</span><span class="command">redis-cli</span>
+              </div>
+              <div class="terminal-line">
+                <span class="prompt">127.0.0.1:6379></span><span class="command">AUTH</span> password
+              </div>
+              <div class="terminal-line">
+                <span class="prompt">127.0.0.1:6379></span><span class="command">SET</span> "mycelia:status" "active"
+              </div>
+              <div class="terminal-line">
+                <span class="prompt">127.0.0.1:6379></span><span class="command">EXPIRE</span> "mycelia:status" 3600
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="terminal-section">
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="terminal-header-title">~/workspace/angular</span>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-line">
+                <span class="prompt">~ %</span><span class="command">ng new</span> mycelia <span
+                  class="command">--directory ./</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="terminal-section">
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="terminal-header-title">~/workspace/docker</span>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-line">
+                <span class="prompt">~ %</span><span class="command">docker</span> run -d --name mycelia-app \
+              </div>
+              <div class="terminal-line indent">
+                -p 8080:80 \
+              </div>
+              <div class="terminal-line indent">
+                mycelia:latest
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="terminal-section terminal-section--full">
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="terminal-header-title">~/workspace/projects</span>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-line">
+                <span class="prompt">~ %</span><span class="command">project</span> --status --all
+              </div>
+              <div class="terminal-line project-line">
+                <span class="project-name">mycelia</span>
+                <span class="project-status status-completed">● COMPLETED</span>
+              </div>
+              <div class="terminal-line project-line">
+                <span class="project-name">cicada</span>
+                <span class="project-status status-active">● ACTIVE</span>
+              </div>
+              <div class="terminal-line project-line">
+                <span class="project-name">beetle</span>
+                <span class="project-status status-testing">● TESTING</span>
+              </div>
+              <div class="terminal-line project-line">
+                <span class="project-name">formica</span>
+                <span class="project-status status-dev">● IN DEV</span>
+              </div>
+              <div class="terminal-line project-line">
+                <span class="project-name">firefly</span>
+                <span class="project-status status-maintenance">● MAINTENANCE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>

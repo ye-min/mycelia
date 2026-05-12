@@ -1,0 +1,17 @@
+[
+  {
+    "category": "AI",
+    "links": [
+      { "title": "Claude",     "url": "https://claude.ai",                "desc": "Anthropic" },
+      { "title": "ChatGPT",    "url": "https://chatgpt.com",              "desc": "OpenAI" },
+      { "title": "Gemini",     "url": "https://gemini.google.com",        "desc": "Google" },
+      { "title": "Grok",       "url": "https://grok.com",                 "desc": "xAI" },
+      { "title": "Perplexity", "url": "https://www.perplexity.ai",        "desc": "Perplexity AI" },
+      { "title": "DeepSeek",   "url": "https://chat.deepseek.com",        "desc": "DeepSeek" },
+      { "title": "Le Chat",    "url": "https://chat.mistral.ai",          "desc": "Mistral" },
+      { "title": "Meta AI",    "url": "https://www.meta.ai",              "desc": "Meta" },
+      { "title": "Kimi",       "url": "https://kimi.moonshot.cn",         "desc": "月之暗面" },
+      { "title": "通义千问",    "url": "https://qianwen.com",              "desc": "通义千问" }
+    ]
+  }
+]

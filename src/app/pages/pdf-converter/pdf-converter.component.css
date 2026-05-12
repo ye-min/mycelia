@@ -1,0 +1,237 @@
+.page-header {
+  padding: 3rem 0 2rem;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  text-decoration: none;
+  margin-bottom: 1.2rem;
+  transition: color 0.15s;
+}
+
+.back-link:hover {
+  color: var(--c-tools);
+}
+
+.page-title {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--fg);
+}
+
+.page-desc {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-3);
+  letter-spacing: 0.08em;
+  margin-top: 0.5rem;
+}
+
+.page-header::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--c-tools);
+  margin-top: 1.2rem;
+  border-radius: 1px;
+}
+
+/* ── Upload ── */
+.upload-section {
+  padding: 3rem 0;
+}
+
+.drop-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  border: 0.5px dashed var(--border-2);
+  border-radius: 8px;
+  padding: 4rem 2rem;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.drop-zone:hover,
+.drop-zone.dragging {
+  border-color: var(--c-tools);
+  background: rgba(120, 102, 160, 0.04);
+}
+
+.drop-icon {
+  color: var(--fg-3);
+}
+
+.drop-zone:hover .drop-icon,
+.drop-zone.dragging .drop-icon {
+  color: var(--c-tools);
+}
+
+.drop-label {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--fg-2);
+  letter-spacing: 0.04em;
+}
+
+.drop-link {
+  color: var(--c-tools);
+  margin-left: 0.3em;
+}
+
+.drop-hint {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--fg-3);
+  letter-spacing: 0.06em;
+}
+
+.error-msg {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #c0392b;
+  letter-spacing: 0.06em;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* ── Processing ── */
+.processing-section {
+  padding: 4rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.processing-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid var(--border-2);
+  border-top-color: var(--c-tools);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.processing-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-3);
+  letter-spacing: 0.06em;
+}
+
+.file-name {
+  color: var(--fg-2);
+}
+
+/* ── Output ── */
+.output-section {
+  padding: 2rem 0 4rem;
+}
+
+.output-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.output-file {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-3);
+  letter-spacing: 0.06em;
+}
+
+.output-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.btn {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 0.5px solid var(--border-2);
+  transition: all 0.15s;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--fg-3);
+}
+
+.btn-ghost:hover {
+  color: var(--fg);
+  border-color: var(--fg-3);
+}
+
+.btn-primary {
+  background: var(--c-tools);
+  color: #fff;
+  border-color: var(--c-tools);
+}
+
+.btn-primary:hover {
+  opacity: 0.85;
+}
+
+.output-content {
+  background: rgba(0,0,0,0.03);
+  border: 0.5px solid var(--border);
+  border-radius: 6px;
+  padding: 1.6rem;
+  overflow-x: auto;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.output-content code {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.75;
+  color: var(--fg-2);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media (prefers-color-scheme: dark) {
+  .output-content {
+    background: rgba(255,255,255,0.03);
+  }
+}
+
+@media (max-width: 640px) {
+  .output-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

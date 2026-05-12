@@ -1,0 +1,30 @@
+[
+  {
+    "date": "2026-04-13",
+    "title": "完整清除本地Windows账号",
+    "excerpt": "Windows账号不仅包含用户数据, 还涉及系统设置, 权限和安全策略. 要彻底清除一个Windows账号, 需要执行以下步骤: ",
+    "file": "assets/content/articles/remove-windows-account.md",
+    "tags": ["windows", "account"]
+  },
+  {
+    "date": "2026-04-09",
+    "title": "Claude Code + 本地大模型完整使用指南",
+    "excerpt": "Claude Code 本质上只是一个终端客户端程序，它把你的输入组装成 API 请求发出去。发给谁，完全取决于环境变量的配置，与 Anthropic 本身没有强制绑定。",
+    "file": "assets/content/articles/claude-code-local-llm-complete-guide.md",
+    "tags": ["Claude", "coding", "llm"]
+  },
+  {
+    "date": "2026-04-07",
+    "title": "2026 年度大模型编程能力权威排行榜",
+    "excerpt": "根据 2026 年 4 月最新的行业数据和学术评测，大模型编程能力排行榜已发生重大洗牌。",
+    "file": "assets/content/articles/llm-coding-leaderboard-2026-Q2-report.md",
+    "tags": ["AI", "coding", "benchmark"]
+  },
+  {
+    "date": "2026-04-01",
+    "title": "医疗服务系统 — 全流程交付物清单",
+    "excerpt": "面向普通用户的医疗服务系统的**全生命周期交付物清单**。该系统由后台服务、Web 管理平台和微信小程序三端构成，核心功能包括病例上传、基于大语言模型的病例智能分析与在线咨询、药品商城以及医疗服务的订购与预约。",
+    "file": "assets/content/articles/medical-service-system-full-process-deliverables-list.md",
+    "tags": ["design", "healthcare", "deliverable"]
+  }
+]

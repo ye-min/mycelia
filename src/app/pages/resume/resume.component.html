@@ -1,0 +1,33 @@
+<main id="resume-page">
+  <div class="container">
+    <header class="page-header">
+      <h1 class="page-title">Resume</h1>
+      <p class="page-desc">个人简历</p>
+    </header>
+
+    <!-- Tag filter bar -->
+    <div class="filter-bar" *ngIf="(allTags$ | async)?.length">
+      <button
+        *ngFor="let tag of allTags$ | async"
+        class="filter-tag"
+        [class.active]="isSelected(tag)"
+        (click)="toggleTag(tag)"
+      >{{ tag }}</button>
+      <button
+        *ngIf="(selectedTags$ | async)?.size"
+        class="filter-clear"
+        (click)="clearTags()"
+      >clear</button>
+    </div>
+
+    <app-feed-row
+      *ngFor="let item of feedItems$ | async; trackBy: trackByLink"
+      [item]="item">
+    </app-feed-row>
+
+    <!-- Empty state -->
+    <p class="empty-state" *ngIf="(feedItems$ | async)?.length === 0">
+      No resumes match the selected tags.
+    </p>
+  </div>
+</main>

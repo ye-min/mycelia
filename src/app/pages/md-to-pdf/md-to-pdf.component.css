@@ -1,0 +1,364 @@
+.page-header {
+  padding: 3rem 0 2rem;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  text-decoration: none;
+  margin-bottom: 1.2rem;
+  transition: color 0.15s;
+}
+
+.back-link:hover {
+  color: var(--c-tools);
+}
+
+.page-title {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--fg);
+}
+
+.page-desc {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-3);
+  letter-spacing: 0.08em;
+  margin-top: 0.5rem;
+}
+
+.page-header::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--c-tools);
+  margin-top: 1.2rem;
+  border-radius: 1px;
+}
+
+/* ── Toolbar ── */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  padding: 1.2rem 0 0.8rem;
+}
+
+.tab-group {
+  display: flex;
+  gap: 0.1rem;
+  background: var(--bg-2, rgba(0,0,0,0.04));
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.tab-btn {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  border-radius: 3px;
+  border: none;
+  background: transparent;
+  color: var(--fg-3);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tab-btn.active {
+  background: var(--bg, #fff);
+  color: var(--fg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.toolbar-right {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 0.5px solid var(--border-2);
+  transition: all 0.15s;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--fg-3);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  color: var(--fg);
+  border-color: var(--fg-3);
+}
+
+.btn-primary {
+  background: var(--c-tools);
+  color: #fff;
+  border-color: var(--c-tools);
+}
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.upload-label {
+  display: inline-flex;
+  align-items: center;
+}
+
+.error-msg {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #c0392b;
+  letter-spacing: 0.06em;
+  margin: 0.4rem 0 0.8rem;
+}
+
+/* ── Editor ── */
+.editor-wrap {
+  position: relative;
+  padding: 1rem 0 4rem;
+}
+
+.drop-overlay {
+  display: none;
+  position: absolute;
+  inset: 0;
+  border: 2px dashed var(--c-tools);
+  border-radius: 8px;
+  background: rgba(120, 102, 160, 0.06);
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+}
+
+.drop-overlay.active {
+  display: flex;
+}
+
+.drop-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--c-tools);
+  letter-spacing: 0.06em;
+}
+
+.editor {
+  width: 100%;
+  min-height: 520px;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--fg);
+  background: transparent;
+  border: 0.5px solid var(--border-2);
+  border-radius: 6px;
+  padding: 1.2rem 1.4rem;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s;
+  caret-color: var(--c-tools);
+}
+
+.editor:focus {
+  border-color: var(--c-tools);
+}
+
+.editor::placeholder {
+  color: var(--fg-3);
+}
+
+/* ── Preview ── */
+.preview-wrap {
+  padding: 1.5rem 0 4rem;
+}
+
+.preview-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg-3);
+  letter-spacing: 0.06em;
+  border: 0.5px dashed var(--border-2);
+  border-radius: 6px;
+}
+
+/* ── Markdown Body ── */
+.markdown-body {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--fg);
+  border: 0.5px solid var(--border);
+  border-radius: 6px;
+  padding: 2rem 2.4rem;
+  background: rgba(0,0,0,0.015);
+}
+
+.markdown-body h1 {
+  font-family: var(--serif);
+  font-size: 1.9em;
+  font-weight: 400;
+  margin: 1em 0 0.4em;
+  padding-bottom: 0.3em;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.markdown-body h2 {
+  font-family: var(--serif);
+  font-size: 1.45em;
+  font-weight: 400;
+  margin: 1em 0 0.3em;
+  padding-bottom: 0.2em;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.markdown-body h3 {
+  font-size: 1.15em;
+  font-weight: 600;
+  margin: 0.9em 0 0.25em;
+}
+
+.markdown-body h4, .markdown-body h5, .markdown-body h6 {
+  font-size: 1em;
+  font-weight: 600;
+  margin: 0.8em 0 0.2em;
+}
+
+.markdown-body p {
+  margin: 0.55em 0;
+}
+
+.markdown-body a {
+  color: var(--c-tools);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.markdown-body code {
+  font-family: var(--mono);
+  font-size: 0.87em;
+  background: rgba(0,0,0,0.05);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+}
+
+.markdown-body pre {
+  background: rgba(0,0,0,0.04);
+  border: 0.5px solid var(--border);
+  border-radius: 5px;
+  padding: 1em 1.2em;
+  overflow-x: auto;
+  margin: 0.8em 0;
+}
+
+.markdown-body pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.85em;
+}
+
+.markdown-body blockquote {
+  margin: 0.8em 0;
+  padding: 0.4em 1em;
+  border-left: 2px solid var(--border-2);
+  color: var(--fg-3);
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.8em 0;
+  font-size: 0.92em;
+}
+
+.markdown-body th, .markdown-body td {
+  border: 0.5px solid var(--border-2);
+  padding: 0.45em 0.8em;
+}
+
+.markdown-body th {
+  background: rgba(0,0,0,0.03);
+  font-weight: 600;
+}
+
+.markdown-body ul, .markdown-body ol {
+  padding-left: 1.6em;
+  margin: 0.5em 0;
+}
+
+.markdown-body li {
+  margin: 0.2em 0;
+}
+
+.markdown-body hr {
+  border: none;
+  border-top: 0.5px solid var(--border);
+  margin: 1.2em 0;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  border-radius: 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .markdown-body {
+    background: rgba(255,255,255,0.02);
+  }
+  .markdown-body code {
+    background: rgba(255,255,255,0.08);
+  }
+  .markdown-body pre {
+    background: rgba(255,255,255,0.05);
+  }
+  .markdown-body th {
+    background: rgba(255,255,255,0.04);
+  }
+  .tab-btn.active {
+    background: rgba(255,255,255,0.08);
+  }
+  .tab-group {
+    background: rgba(255,255,255,0.06);
+  }
+}
+
+@media (max-width: 640px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .markdown-body {
+    padding: 1.2rem 1rem;
+  }
+}

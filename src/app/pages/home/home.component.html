@@ -1,0 +1,8 @@
+<main id="home-feed">
+  <div class="container">
+    <app-feed-row
+      *ngFor="let item of feedItems$ | async; trackBy: trackByLink"
+      [item]="item">
+    </app-feed-row>
+  </div>
+</main>
